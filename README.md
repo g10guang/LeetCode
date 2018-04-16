@@ -6,11 +6,10 @@
 
 # 目录
 
-| [二分查找](#二分查找-binarySearch) | [贪心算法](#贪心算法-greedy) | [双指针](#双指针-twoPoiter) | [图的搜索](#图的遍历-graphSeach) | [回溯](#回溯-blackTrack) |
+| [二分查找](#二分查找-Binary-Search) | [贪心算法](#贪心算法-Greedy) | [双指针](#双指针-Two-Pointer) | [图的搜索](#图的遍历-Graph-Search) | [回溯](#回溯-Black-Track) |
 | :----- | :------- | :----- | :---- | :---- |
 
-
-## 二分查找 :binarySearch:
+## 二分查找 Binary Search
 
 ### 求开方
 
@@ -30,7 +29,7 @@
 
 [Soluton](./binarysearch/singleNoDuplicate.go)
 
-## 贪心算法 :greedy:
+## 贪心算法 Greedy
 
 ### 饼干分配
 
@@ -80,7 +79,7 @@
 
 [Solution](./greedy/queueByHeight.go)
 
-## 双指针 :twoPoiter:
+## 双指针 Two Pointer
 
 ### 有序数组中寻找两个数字等于特定数字
 
@@ -124,7 +123,7 @@
 
 [Solution](./twoPointer/findLongestWord.go)
 
-## 排序 :sort:
+## 排序
 
 ### 第 K 个元素
 
@@ -144,7 +143,7 @@
 
 [Solution](./sort/sortCharByFrequency.go)
 
-## 图的遍历 :graphSeach:
+## 图的遍历 Graph Search
 
 ### 岛屿的最大面积
 
@@ -188,7 +187,7 @@
 
 [Solution](./graph/pacific.go)
 
-## 回溯 :blackTrack:
+## 回溯 Black Track
 
 ### 数字组合
 
