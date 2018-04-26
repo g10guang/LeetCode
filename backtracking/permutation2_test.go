@@ -1,8 +1,8 @@
-package blacktracking_test
+package backtracking_test
 
 import (
 	"testing"
-	"github.com/g10guang/leetcode/blacktracking"
+	"github.com/g10guang/leetcode/backtracking"
 )
 
 func TestPermute2(t *testing.T) {
@@ -14,7 +14,7 @@ func TestPermute2(t *testing.T) {
 		{[]int{1,1,2}, [][]int{{1,1,2},{1,2,1},{2,1,1}}},
 	}
 	for _, s := range suits {
-		if r := blacktracking.PermuteUnique(s.input); !compare2Dslice(r, s.expect) {
+		if r := backtracking.PermuteUnique(s.input); !compare2Dslice(r, s.expect) {
 			t.Errorf("input=%v\n expect=%v\n return=%v\n", s.input, s.expect, r)
 		}
 	}

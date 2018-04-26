@@ -1,8 +1,8 @@
-package blacktracking_test
+package backtracking_test
 
 import (
 	"testing"
-	"github.com/g10guang/leetcode/blacktracking"
+	"github.com/g10guang/leetcode/backtracking"
 )
 
 func TestCombine(t *testing.T) {
@@ -15,7 +15,7 @@ func TestCombine(t *testing.T) {
 		{1, 1, [][]int{{1}}},
 	}
 	for _, s := range suits {
-		if r := blacktracking.Combine(s.n, s.k); !compare2Dslice(r, s.expect) {
+		if r := backtracking.Combine(s.n, s.k); !compare2Dslice(r, s.expect) {
 			t.Errorf("n=%v, k=%v\n expect=%v\n return=%v\n", s.n, s.k, s.expect, r)
 		}
 	}

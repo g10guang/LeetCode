@@ -1,4 +1,4 @@
-package blacktracking
+package backtracking
 
 // https://leetcode.com/problems/permutations/description/
 func permute(nums []int) [][]int {

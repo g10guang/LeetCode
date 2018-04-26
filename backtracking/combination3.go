@@ -1,4 +1,4 @@
-package blacktracking
+package backtracking
 
 var CombinationSum3 = combinationSum3
 

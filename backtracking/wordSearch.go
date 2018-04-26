@@ -1,4 +1,4 @@
-package blacktracking
+package backtracking
 
 // https://leetcode.com/problems/word-search/description/
 func exist(board [][]byte, word string) bool {
