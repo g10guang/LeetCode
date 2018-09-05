@@ -79,7 +79,7 @@ func (o *heap) top() comparable {
 
 func (o *heap) push(x comparable) int {
 	*o = append(*o, x)
-	return o.update(len(*o) - 1)
+	return o.swim(len(*o) - 1)
 }
 
 func (o *heap) pop() comparable {
@@ -138,9 +138,9 @@ func (o *heap) sink(pos int) int {
 }
 
 func (o *heap) build() {
-	// swim(o[pos]) for pos in range(1, len(o))
-	for i := 0; i < o.len(); i++ {
-		o.swim(i)
+	// sink every parent node.
+	for i := (o.len() - 2) / 2; i >= 0; i-- {
+		o.sink(i)
 	}
 }
 
