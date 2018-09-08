@@ -55,7 +55,7 @@ func TestBSTGetAndDelete(t *testing.T) {
 		vv, ok := v.(int)
 		assert.True(t, ok)
 		assert.Equal(t, k.v, vv)
-		// delete
+		// remove
 		flag, v = T.delete(k)
 		expectedSize--
 		assert.True(t, flag)

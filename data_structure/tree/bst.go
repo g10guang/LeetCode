@@ -16,7 +16,7 @@ type bst interface {
 	// The number of node in the bst.
 	size() int
 
-	// delete key and return the value.
+	// remove key and return the value.
 	// if key not exists, do nothing and return nil.
 	delete(comparable) (bool, interface{})
 
@@ -45,11 +45,11 @@ type bst interface {
 	// if not exist return nil.
 	ceil(comparable) (bool, comparable, interface{})
 
-	// if size() > 0, delete the min key-value in bst.
+	// if size() > 0, remove the min key-value in bst.
 	// else do nothing and return nil.
 	deleteMin() (bool, comparable, interface{})
 
-	// if size() > 0, delete the max key-value in bst.
+	// if size() > 0, remove the max key-value in bst.
 	// else do nothing and return nil.
 	deleteMax() (bool, comparable, interface{})
 
@@ -349,7 +349,7 @@ func (n *node) delete(k comparable) (hasDel bool, delNode *node) {
 		}
 
 	case 0:
-		// delete current node
+		// remove current node
 		hasDel = true
 		delNode = n
 
@@ -395,7 +395,7 @@ func (n *node) deleteMax() (hasDel bool, delNode *node) {
 	return hasDel, delNode
 }
 
-// delete the linkage of left and right children.
+// remove the linkage of left and right children.
 // make GC more efficient.
 func (n *node) removeChildren() {
 	n.left, n.right = nil, nil
