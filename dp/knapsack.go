@@ -1,41 +1,59 @@
-package main
+package dp
 
-func main() {
-	zeroOnePack()
-}
+import "fmt"
 
-func zeroOnePack() {
-	N := 10
-	V := 100
-	F := make([][]int, N+1)
-	data := make([][]int, N+1)
-	for i := 0; i <= N; i++ {
-		// Ci Wi
-		data[i] = make([]int, 2)
-		F[i] = make([]int, V+1)
+// 0-1 knapsack.
+// weight and value must be int
+// time O(n^2) space O(n^2)
+func zeroOneKnapsack(weight, value []int, maxWeight int) int {
+	cnt := len(weight)
+	if cnt != len(value) {
+		panic(fmt.Sprintf("len(weight)=%d len(value)=%d not equal", cnt, len(value)))
 	}
-	// according to golang initialize the data after it allocate.
-	for i := 1; i <= N; i++ {
-		for v := data[i][0]; v <= V; v++ {
-			F[i][v] = max(F[i-1][v], F[i-1][v-data[i][0]]+data[i][1])
+	// add 1 to to make it benefit for calculate.
+	// use array not slice. Array need not to be made before use.
+	// go compiler will init the array to be zero.
+	profit := make([][]int, cnt+1)
+	for i := 0; i < cnt+1; i++ {
+		profit[i] = make([]int, maxWeight+1)
+	}
+
+	for i := 1; i <= cnt; i++ {
+		for v := 1; v <= maxWeight; v++ {
+			if weight[i-1] > v {
+				profit[i][v] = profit[i-1][v]
+			} else {
+				// Local optimal leads to global optimal.
+				profit[i][v] = max(profit[i-1][v], profit[i-1][v-weight[i-1]]+value[i-1])
+			}
 		}
 	}
+
+	// return counter of object is cnt and weight is maxWeight value.
+	return profit[cnt][maxWeight]
 }
 
-func ZeroOnePackArray() {
-	N := 10
-	V := 100
-	F := make([]int, V+1)
-	data := make([][]int, N+1)
-	for i := 1; i <= N; i++ {
-		for v := V; v <= data[i][0]; v-- {
-			F[v] = max(F[v], F[v-data[i][0]]+data[i][1])
+func zeroOneKnapsackSpaceAdvance(weight, value []int, maxWeight int) int {
+	cnt := len(weight)
+	if cnt != len(value) {
+		panic(fmt.Sprintf("len(weight)=%d len(value)=%d not equal", cnt, len(value)))
+	}
+	profit := make([]int, maxWeight+1)
+	// Traverse every product.
+	for i := 0; i < cnt; i++ {
+		for v := maxWeight; v > 0; v-- {
+			// If i == cnt - 1, the last product just need to traverse one time.
+			// because we just care about profit[maxWeight]
+			if weight[i] <= v {
+				profit[v] = max(profit[v-weight[i]]+value[i], profit[v])
+			}
 		}
 	}
+	return profit[maxWeight]
 }
 
-func max(x int, y int) int {
-	if x >= y {
+func max(x, y int) int {
+	if x > y {
 		return x
 	}
 	return y
