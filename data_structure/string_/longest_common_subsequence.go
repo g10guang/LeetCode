@@ -1,4 +1,4 @@
-package longest_common
+package string_
 
 // Use dynamic program to solve longest common subsequence.
 // https://zh.wikipedia.org/wiki/%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%AD%90%E5%BA%8F%E5%88%97
