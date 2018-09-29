@@ -1,6 +1,8 @@
 package dp
 
-import "fmt"
+import (
+	"fmt"
+)
 
 // 0-1 knapsack.
 // weight and value must be int
@@ -50,6 +52,116 @@ func zeroOneKnapsackSpaceAdvance(weight, value []int, maxWeight int) int {
 		}
 	}
 	return profit[maxWeight]
+}
+
+func multiKnapsack(w, p, n []int, N, W int) int {
+	dp := make([][]int, N+1)
+	for i := 0; i <= N; i++ {
+		dp[i] = make([]int, W+1)
+	}
+	for i := 1; i <= N; i++ {
+		for v := 1; v <= W; v++ {
+			for k := 0; k <= n[i]; k++ {
+				if v >= k*w[i] {
+					dp[i][v] = max(dp[i-1][v], dp[i-1][v-k*w[i]]+k*p[i])
+				} else {
+					dp[i][v] = dp[i-1][v]
+				}
+			}
+		}
+	}
+	return dp[N][W]
+}
+
+func multiKnapsackSpaceAdvance(w, p, n []int, N, W int) int {
+	dp := make([]int, W+1)
+	for i := 0; i <= N; i++ {
+		for v := W; v > 0; v-- {
+			for k := 0; k <= n[i] && v >= k*w[i]; k++ {
+				dp[v] = max(dp[v], dp[v-k*w[i]]+k*p[i])
+			}
+		}
+	}
+	return dp[W]
+}
+
+func multiDimensionKnapsack(w, p, s []int, N, W, S int) int {
+	f := make([][][]int, N+1)
+	for i := 0; i <= N; i++ {
+		f[i] = make([][]int, W+1)
+		for j := 0; j <= S; j++ {
+			f[i][j] = make([]int, S+1)
+		}
+	}
+	for i := 1; i <= N; i++ {
+		for v := 0; v <= W; v++ {
+			for y := 0; y <= S; y++ {
+				if v >= w[i] && y >= s[i] {
+					f[i][v][y] = max(f[i-1][v][y], f[i-1][v-w[i]][y-s[i]])
+				} else {
+					f[i][v][y] = f[i-1][v][y]
+				}
+			}
+		}
+	}
+	return f[N][W][S]
+}
+
+func multiDimensionKnapsackSpaceAdvance(w, p, s []int, N, W, S int) int {
+	f := make([][]int, W+1)
+	for i := 0; i <= W; i++ {
+		f[i] = make([]int, S+1)
+	}
+	for i := 1; i <= N; i++ {
+		for v := W; v > 0 && v >= w[i]; v-- {
+			for y := S; y > 0 && y >= s[i]; y-- {
+				f[v][y] = max(f[v][y], f[v-w[i]][y-s[i]]+p[i])
+			}
+		}
+	}
+	return f[W][S]
+}
+
+func fullKnapsack(w []int, N, W int) bool {
+	// dp mark every value is reachable or not.
+	dp := make([]bool, W+1)
+	// 0 can be reach always
+	dp[0] = true
+	// make sure every number will be used just once.
+	for _, v := range w {
+		// loop from W to 0
+		// if loop from 0 to W, every dp[k * v] will be set true.
+		for t := W; t > 0; t-- {
+			if t >= v {
+				dp[t] = dp[t] || dp[t-v]
+			}
+		}
+	}
+	// judge
+	return dp[W]
+}
+
+func knapsackWaysCnt(w []int, N, W int) int {
+	dp := make([]int, W+1)
+	dp[0] = 1
+	for _, v := range w {
+		for t := W; t >= v; t-- {
+			dp[t] += dp[t-v]
+		}
+	}
+	return dp[W]
+}
+
+func comleteKnapsack(w, p []int, N, W int) int {
+	dp := make([]int, W+1)
+	for v := 1; v <= W; v++ {
+		for i := range w {
+			if v >= w[i] {
+				dp[v] = max(dp[v], dp[v-w[i]]+p[i])
+			}
+		}
+	}
+	return dp[W]
 }
 
 func max(x, y int) int {

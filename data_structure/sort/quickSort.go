@@ -85,3 +85,35 @@ func QuickSort3(arr []int) {
 	QuickSort3(arr[:low])
 	QuickSort3(arr[low+1:])
 }
+
+type Node struct {
+	v    interface{}
+	k    int
+	next *Node
+}
+
+// Quick sort for list [start, end)
+func QuickSortList(start, end *Node) {
+	if start == end {
+		return
+	}
+	p, q := start, start.next
+	for q != end {
+		if q.k < p.k {
+			// swap the value, not change list structure
+			swap(p, q)
+			p = p.next
+			swap(p, q)
+		}
+		q = q.next
+	}
+	// sort [start, p)
+	QuickSortList(start, p)
+	// sort (p, end)
+	QuickSortList(p.next, end)
+}
+
+func swap(p, q *Node) {
+	p.v, q.v = q.v, p.v
+	p.k, q.k = q.k, p.k
+}
