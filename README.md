@@ -281,3 +281,9 @@
 [216. Combination Sum III](https://leetcode.com/problems/combination-sum-iii/description/)
 
 [Solution](./backtracking/combination3.go)
+
+### 两个有序数组的中位数
+
+[4. 寻找两个有序数组的中位数]https://leetcode-cn.com/problems/median-of-two-sorted-arrays/submissions/()
+
+[Solution](./alg/median_in_two_ordered_array/main.go)
