@@ -20,6 +20,9 @@ func isMatch(s string, p string) bool {
 				return true
 			}
 		}
+		if i == slen {
+			return false
+		}
 		if matchChar(s[i], p[j]) {
 			if isAny(j) {
 				if match(i+1, j) || match(i+1, j+2) {

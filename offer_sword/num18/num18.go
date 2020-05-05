@@ -14,7 +14,7 @@ func deleteNode(head *ListNode, val int) *ListNode {
 	if head.Val == val {
 		return head.Next
 	}
-	for parent, current := head, head.Next; current != nil; parent, current := current, current.Next {
+	for parent, current := head, head.Next; current != nil; parent, current = current, current.Next {
 		if current.Val == val {
 			parent.Next = current.Next
 			break
